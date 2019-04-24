@@ -1,0 +1,14 @@
+.default-layout-container {
+  padding-top: 64px;
+}
+.previous-tracks {
+  height: 100%;
+  width: 100%;
+  .vs-con-loading__container {
+    height: 120px;
+    width: 120px;
+  }
+  #loaderContainer {
+    @include content-center;
+  }
+}

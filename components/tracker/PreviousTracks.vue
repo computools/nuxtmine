@@ -12,26 +12,52 @@
         @click="openLoading(type)"
       ></div>
     </div>
-    dqwdqwdqwd
+    <div v-else>
+      <h5>Previous logs:</h5>
+      <div class="tracks-container">
+        <Track
+          v-for="(log, i) of logs"
+          :key="i"
+          :track="log"
+          @select="$emit('select', log)"
+        />
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import Track from './Track'
 export default {
   name: 'PreviousTracks',
+  components: {
+    Track
+  },
+  props: {
+    issueId: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
-    return {
-      loaded: false
+    return {}
+  },
+  computed: {
+    loaded() {
+      return this.$store.state.issues.previousLogs.issue === this.issueId
+    },
+    logs() {
+      return this.$store.state.issues.previousLogs.logs
     }
   },
   mounted() {
-    this.$vs.loading({
-      container: `#loaderContainer`
-    })
-  },
-  methods: {
-    select(track) {
-      this.$emit('select', track)
+    if (!this.loaded) {
+      this.$vs.loading({
+        container: `#loaderContainer`
+      })
     }
+    // setTimeout(() => {
+    this.$store.dispatch('issues/getLastLogsForIssue', this.issueId)
+    // }, 100)
   }
 }
 </script>

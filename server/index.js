@@ -14,6 +14,8 @@ const config = require('../nuxt.config.js')
 config.dev = !(app.env === 'production')
 
 const projects = require('./routes/projects.route')
+const issues = require('./routes/issues.route')
+const activities = require('./routes/activities.route')
 
 async function start() {
   // Instantiate nuxt.js
@@ -40,6 +42,8 @@ async function start() {
   app.use(bodyParser())
 
   api.use('/api/projects', projects.routes())
+  api.use('/api/issues/', issues.routes())
+  api.use('/api/activities', activities.routes())
 
   app.use(api.routes())
 

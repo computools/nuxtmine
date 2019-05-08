@@ -23,7 +23,6 @@ const mapIssuesToProjects = issues => {
 
 router.get('/', checkKey, async ctx => {
   const issues = await redmine.findIssues(ctx.state.key)
-  console.log(issues)
   ctx.status = 200
   ctx.body = mapIssuesToProjects(issues)
 })

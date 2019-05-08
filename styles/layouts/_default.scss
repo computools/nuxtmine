@@ -12,3 +12,51 @@
     @include content-center;
   }
 }
+.error {
+  margin-top: 4px;
+  font-size: 11px;
+  color: $red !important;
+}
+.tracker-input {
+  margin: 8px 0;
+
+  .time-input-container {
+    margin-left: 24px;
+    max-width: 154px
+  }
+}
+.tracks-container {
+  max-height: 200px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  .track-item {
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      max-width: 80%;
+
+      .date {
+        font-weight: 600;
+      }
+      .comment {
+        margin-top: 4px;
+        h5 {
+          display: inline
+        }
+      }
+    }
+
+    & + .track-item {
+      border-top: #aaa 1px solid
+    }
+  }
+}

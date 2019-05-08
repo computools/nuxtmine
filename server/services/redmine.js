@@ -7,6 +7,7 @@ module.exports = {
     return client
       .get('/issues.json', {
         params: {
+          ...query,
           assigned_to_id: 'me'
         },
         headers: {
@@ -22,9 +23,30 @@ module.exports = {
           'X-Redmine-API-Key': key
         }
       })
-      .res(res => res.data)
+      .then(res => res.data)
   },
-  timeTracks: (key, project) => {
-    return client.get('/time_entries.json?user_id=me')
+  timeTracksForIssue: (key, issue) => {
+    return client
+      .get(`/time_entries.json?user_id=me&issue_id=${issue}`, {
+        headers: {
+          'X-Redmine-API-Key': key
+        }
+      })
+      .then(res => res.data)
+  },
+  trackTime: (key, log) => {
+    return client
+      .post(
+        'time_entries.xml',
+        {
+          time_entry: log
+        },
+        {
+          headers: {
+            'X-Redmine-API-Key': key
+          }
+        }
+      )
+      .catch(e => console.log(e))
   }
 }

@@ -21,10 +21,10 @@ export default {
   computed: {
     projects() {
       return this.$store.state.issues.projects
+    },
+    recentProjects() {
+      return this.$store.getters['issues/recent']
     }
-  },
-  created() {
-    this.$store.dispatch('issues/fetchMyIssues')
   }
 }
 </script>

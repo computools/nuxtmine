@@ -18,6 +18,7 @@
 import Navbar from '~/components/Navbar'
 
 export default {
+  middleware: ['is-authenticated', 'fetch-projects'],
   components: {
     Navbar
   }
